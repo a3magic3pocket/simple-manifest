@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+spec:
+  selector:
+    matchLabels:
+      app: simple-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: simple-api
+    spec:
+      volumes:
+        - name: sqlite3-pv-storage
+          persistentVolumeClaim:
+            claimName: sqlite3-pv-claim
+      containers:
+      - name: simple-api
+        image: a3magic3pocket/simple-api:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+          - mountPath: "/root/api/sqlite3"
+            name: sqlite3-pv-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-api
+  labels:
+    app: simple-api
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: simple-api
+  # type: LoadBalancer
+  type: NodePort
