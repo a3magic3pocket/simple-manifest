@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-api
+data:
+  useK8s: "yes"
+  frontendUrlList: "https://your-frontend-url.com,https://www.your-frontend-url.com"
+  ginMode: "release"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simple-web
+data:
+  backendOrigin: "your-backend-url.com"
+  frontendOrigin: "your-frontend-url.com"

@@ -2,28 +2,47 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: simple-ingress
-  annotations: ## 인그레스 컨트롤러 설정
-    kubernetes.io/ingress.class: 'nginx' ## nginx 컨트롤러 사용
-    nginx.ingress.kubernetes.io/rewrite-target: / ## URL 경로를 바꾸는 애노테이션
-spec: ## 인그레스 사양
+  annotations: 
+    kubernetes.io/ingress.class: 'nginx' 
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+    nginx.ingress.kubernetes.io/ssl-passthrough: 'true'
+    cert-manager.io/issuer: "letsencrypt-prod"
+    # cert-manager.io/issuer: "letsencrypt-staging"
+spec:
+  tls:
+  - hosts:
+      - www.your-frontend-url.com
+      - your-frontend-url.com
+      - your-backend-url.com
+    secretName: simple-tls
   rules:
-    - host: abc.sample.com ## FQDN 설정
+    - host: "your-backend-url.com"
       http:
-        paths: ## URL의 경로와 백엔드 서비스를 대응시키는 목록을 기술
+        paths:
           - pathType: Prefix
             path: / 
             backend:
               service:
-                name: simple-web ## 매핑되는 서비스명과 포트
-                port: 
-                  number: 3000
-    - host: xyz.sample.com ## FQDN 설정
-      http:
-        paths: ## URL의 경로와 백엔드 서비스를 대응시키는 목록을 기술
-          - pathType: Prefix
-            path: /api 
-            backend:
-              service:
-                name: simple-api ## 매핑되는 서비스명과 포트
+                name: simple-api
                 port: 
                   number: 8080
+    - host: "your-frontend-url.com"
+      http:
+        paths: 
+          - pathType: Prefix
+            path: / 
+            backend:
+              service:
+                name: simple-web 
+                port: 
+                  number: 3000
+    - host: "www.your-frontend-url.com"
+      http:
+        paths: 
+          - pathType: Prefix
+            path: / 
+            backend:
+              service:
+                name: simple-web 
+                port: 
+                  number: 3000
