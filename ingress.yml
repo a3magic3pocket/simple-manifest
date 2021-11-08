@@ -46,3 +46,13 @@ spec:
                 name: simple-web 
                 port: 
                   number: 3000
+    - host: "your-webhook-url.com"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: webhook-svc
+                port:
+                  number: 9000
