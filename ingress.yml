@@ -14,6 +14,7 @@ spec:
       - www.your-frontend-url.com
       - your-frontend-url.com
       - your-backend-url.com
+      - your-webhook-url.com
     secretName: simple-tls
   rules:
     - host: "your-backend-url.com"
