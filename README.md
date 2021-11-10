@@ -4,7 +4,7 @@
 
 ## 쿠버네티스 구조
 
-- ![0-kubernetes-structure](./images/0-kubernetes-structure.jpg){: width="70%" height="70%"}
+- ![0-kubernetes-structure](./images/0-kubernetes-structure.jpg)
 
 ## 초기 구축 명령
 
@@ -37,7 +37,7 @@
 
 ## CI / CD
 
-- ![1-ci-cd](./images/1-ci-cd.jpg){: width="70%" height="70%"}
+- ![1-ci-cd](./images/1-ci-cd.jpg)
 - 설명
   - [simple locker](https://isthereanymerch.com)는 CI / CD가 구축 되어있습니다.  
     대략적인 과정을 간략하게 기술합니다.
