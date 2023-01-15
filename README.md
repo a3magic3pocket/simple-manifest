@@ -39,7 +39,7 @@
 
 - ![1-ci-cd](./images/1-ci-cd.jpg)
 - 설명
-  - [simple locker](https://isthereanymerch.com)는 CI / CD가 구축 되어있습니다.  
+  - [simple locker](https://www.coinlocker.link)는 CI / CD가 구축 되어있습니다.  
     대략적인 과정을 간략하게 기술합니다.
 - CI / CD 과정
   - [LOCAL] local dev branch에서 작업 후 remote dev branch로 push
